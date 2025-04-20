@@ -23,9 +23,8 @@ async def main():
     Screen.printBanner()
 
     base_url = input(f"{Colors.magenta}Target (p.ej. https://api.ejemplo.com): {Colors.reset}").rstrip("/")
-    option   = input(f"{Colors.magenta}1. Rápido (endpointsLite.txt)\n2. Lento  (endpointsLargue.txt)\n> {Colors.reset}").strip()
 
-    wordlist_path = "./wordlists/endpointsLite.txt" if option == "1" else "./wordlists/endpointsLargue.txt"
+    wordlist_path = "./wordlists/endpointsLite.txt"
     endpoints = [l.strip() for l in pathlib.Path(wordlist_path).read_text().splitlines() if l.strip()]
 
     sem = asyncio.Semaphore(CONCURRENCY)
